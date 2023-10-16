@@ -1,11 +1,12 @@
 import csv
 import random
 import math
+import matplotlib.pyplot as plt
 
-def generate_random_points(n, start, finish, function):
+def generate_random_points(n, start, end, function):
     points = []
     for _ in range(n):
-        x = random.uniform(start, finish)
+        x = random.uniform(start, end)
         fx = function(x)
         points.append((x, fx))
     return points
@@ -21,9 +22,14 @@ def save_points_to_csv(points, filename):
             csv_writer.writerow(point)
 
 # Main program
-n = 3  # Number of random points to generate
-output_file = "sine_points.csv"
+output_file = "sine_points2.csv"
 
-random_points = generate_random_points(n, 0, 2*math.pi, eval_function)
+random_points = generate_random_points(n=100, start=0, end=2*math.pi, function=eval_function)
 save_points_to_csv(random_points, output_file)
-print(f"{n} random points saved to {output_file}")
+print(f"Random points saved to {output_file}")
+
+# Graph the points using matplotlib
+x_values = [point[0] for point in random_points]
+y_values = [point[1] for point in random_points]
+plt.scatter(x_values, y_values)
+plt.show()
