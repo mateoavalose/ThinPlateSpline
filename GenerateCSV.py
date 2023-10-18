@@ -22,9 +22,9 @@ def save_points_to_csv(points, filename):
             csv_writer.writerow(point)
 
 # Main program
-output_file = "sine_points2.csv"
+output_file = "sine_points.csv"
 
-random_points = generate_random_points(n=100, start=0, end=2*math.pi, function=eval_function)
+random_points = generate_random_points(n=100, start=0, end=4*math.pi, function=eval_function)
 save_points_to_csv(random_points, output_file)
 print(f"Random points saved to {output_file}")
 
