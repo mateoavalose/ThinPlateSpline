@@ -1,7 +1,5 @@
-import Application as app
+import Files.Application as app
 
-print("Running Main")
-
-sine_file = "sine_points.csv"
+sine_file = "DataSets\sine_points.csv"
 
 app.runApp(csv_file=sine_file)
