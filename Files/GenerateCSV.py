@@ -28,6 +28,7 @@ highLimitX = 5
 lowLimitY = -5
 highLimitY = 5
 nPoints = 500
+
 def eval_function(x, y):
     return x**2 * np.sin(y)
 
