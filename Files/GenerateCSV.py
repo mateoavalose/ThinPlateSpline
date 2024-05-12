@@ -11,9 +11,6 @@ def generate_random_points(n, start, end, function):
         points.append((x, fx))
     return points
 
-def eval_function(x):
-    return math.sin(x)
-
 def save_points_to_csv(points, filename):
     with open(filename, 'w', newline='') as file:
         csv_writer = csv.writer(file)
@@ -23,6 +20,9 @@ def save_points_to_csv(points, filename):
 
 # Main program
 output_file = "DataSets/sine_points.csv"
+
+def eval_function(x):
+    return math.sin(x)
 
 random_points = generate_random_points(n=100, start=0, end=4*math.pi, function=eval_function)
 save_points_to_csv(random_points, output_file)
