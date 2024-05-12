@@ -10,7 +10,7 @@ class TPS:
         self.CentresX, self.CentresY = self.calcCentres()
 
     def calcCentres(self):
-        # In the mean time, just use the x values as the centres
+        # In the mean time, just use the point values as the centres
         CentresX = self.x_values
         CentresY = self.y_values
         return CentresX, CentresY
