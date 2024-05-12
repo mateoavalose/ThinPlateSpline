@@ -50,11 +50,11 @@ x_func = np.arange(lowLimitX, highLimitX, 0.01)   # start, stop, step
 y_func = np.arange(lowLimitY, highLimitY, 0.01)   # start, stop, step
 x_func, y_func = np.meshgrid(x_func, y_func)
 z_func = x_func ** 2 * np.sin(y_func) #eval_function(x_func, y_func)
-surf = ax.plot_surface(x_func, y_func, z_func, linewidth=0, antialiased=True, cmap='viridis')
+surf = ax.plot_surface(x_func, y_func, z_func, linewidth=0, antialiased=True, cmap='viridis') # type: ignore
 # Customize the z axis.
-ax.set_zlim(-40, 40)
-ax.zaxis.set_major_locator(LinearLocator(10))
+ax.set_zlim(-40, 40) # type: ignore
+ax.zaxis.set_major_locator(LinearLocator(10)) # type: ignore
 # A StrMethodFormatter is used automatically
-ax.zaxis.set_major_formatter('{x:.02f}')
+ax.zaxis.set_major_formatter('{x:.02f}') # type: ignore
 
 plt.show()
