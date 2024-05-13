@@ -27,7 +27,7 @@ lowLimitX = -5
 highLimitX = 5
 lowLimitY = -5
 highLimitY = 5
-nPoints = 500
+nPoints = 1000
 
 def eval_function(x, y):
     return x**2 * np.sin(y)
@@ -51,7 +51,7 @@ x_func = np.arange(lowLimitX, highLimitX, 0.01)   # start, stop, step
 y_func = np.arange(lowLimitY, highLimitY, 0.01)   # start, stop, step
 x_func, y_func = np.meshgrid(x_func, y_func)
 z_func = x_func ** 2 * np.sin(y_func) #eval_function(x_func, y_func)
-surf = ax.plot_surface(x_func, y_func, z_func, linewidth=0, antialiased=True, cmap='viridis') # type: ignore
+surf = ax.plot_surface(x_func, y_func, z_func, linewidth=0, antialiased=True, cmap='viridis', alpha=0.5) # type: ignore
 # Customize the z axis.
 ax.set_zlim(-40, 40) # type: ignore
 ax.zaxis.set_major_locator(LinearLocator(10)) # type: ignore
