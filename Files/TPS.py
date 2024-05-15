@@ -24,17 +24,17 @@ class TPS:
             r = self.calcr(xc, x, yc, y)
             return self.b * np.power(r, 2*self.a) * np.log(self.b * r)
     
-    def DevcalcTPS(self, xc, x):
-        if(xc == x):
+    def DevcalcTPS(self, xc, x, yc, y):
+        if(xc == x and yc == y):
             return 0
-        r = self.calcr(xc, x, 0, 0)
+        r = self.calcr(xc, x, yc, y)
         dIdr = self.b * np.power(r, 2*self.a-1) * (2*self.a*np.log(self.b*r)+1)
         return dIdr * (x - xc) / r
     
-    def Dev2calcTPS(self, xc, x):
-        if(xc == x):
+    def Dev2calcTPS(self, xc, x, yc, y):
+        if(xc == x and yc == y):
             return 0
-        r = self.calcr(xc, x, 0, 0)
+        r = self.calcr(xc, x, yc, y)
         dIdr = self.b * np.power(r, 2*self.a-1) * (2*self.a*np.log(self.b*r)+1)
         d2Idr2 = self.b*np.power(r, 2*self.a-2)*(2*self.a*(2*self.a-1)*np.log(self.b*r)+4*self.a-1)
         return d2Idr2*np.power((x-xc)/r, 2) + dIdr*(1/r-(np.power((x-xc), 2)/np.power(r, 3)))
@@ -53,30 +53,30 @@ class TPS:
             result += w[i] * self.calcTPS(self.CentresX[i], x, self.CentresY[i], y)
         return result
     
-    def interpolateDerivateX(self, w, x):
+    def interpolateDerivateX(self, w, x, y):
         n = len(self.CentresX)
         result = 0.0
         for i in range(n):
-            result += w[i] * self.DevcalcTPS(self.CentresX[i], x)
+            result += w[i] * self.DevcalcTPS(self.CentresX[i], x, self.CentresY[i], y)
         return result
     
-    def interpolateDerivateY(self, w, y):
+    def interpolateDerivateY(self, w, x, y):
         n = len(self.CentresY)
         result = 0.0
         for i in range(n):
-            result += w[i] * self.DevcalcTPS(self.CentresY[i], y)
+            result += w[i] * self.DevcalcTPS(self.CentresY[i], y, self.CentresX[i], x, )
         return result
     
-    def interpolateDerivate2X(self, w, x):
+    def interpolateDerivate2X(self, w, x, y):
         n = len(self.CentresX)
         result = 0.0
         for i in range(n):
-            result += w[i] * self.Dev2calcTPS(self.CentresX[i], x)
+            result += w[i] * self.Dev2calcTPS(self.CentresX[i], x, self.CentresY[i], y)
         return result
     
-    def interpolateDerivate2Y(self, w, y):
+    def interpolateDerivate2Y(self, w, x, y):
         n = len(self.CentresY)
         result = 0.0
         for i in range(n):
-            result += w[i] * self.Dev2calcTPS(self.CentresX[i], y)
+            result += w[i] * self.Dev2calcTPS(self.CentresY[i], y, self.CentresX[i], x)
         return result

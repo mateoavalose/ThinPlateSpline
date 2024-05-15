@@ -2,7 +2,6 @@ import Files.Functions as func
 from Files.TPS import TPS
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.ticker import LinearLocator
 
 def runApp(csv_file):
     # Separate the data from the CSV file into two arrays
@@ -41,10 +40,10 @@ def runApp(csv_file):
             fxy_interpolated_derivative2X = []
             fxy_interpolated_derivative2Y = []
             for i in range(n):
-                fxy_interpolated_derivativeX.append(tpsFunction.interpolateDerivateX(w, x_interpolated[i]))
-                fxy_interpolated_derivativeY.append(tpsFunction.interpolateDerivateY(w, y_interpolated[i]))
-                fxy_interpolated_derivative2X.append(tpsFunction.interpolateDerivate2X(w, x_interpolated[i]))
-                fxy_interpolated_derivative2Y.append(tpsFunction.interpolateDerivate2Y(w, y_interpolated[i]))
+                fxy_interpolated_derivativeX.append(tpsFunction.interpolateDerivateX(w, x_interpolated[i], y_interpolated[i]))
+                fxy_interpolated_derivativeY.append(tpsFunction.interpolateDerivateY(w, x_interpolated[i], y_interpolated[i]))
+                fxy_interpolated_derivative2X.append(tpsFunction.interpolateDerivate2X(w, x_interpolated[i], y_interpolated[i]))
+                fxy_interpolated_derivative2Y.append(tpsFunction.interpolateDerivate2Y(w, x_interpolated[i], y_interpolated[i]))
     elif RBF_Type == "2":
         ### Gaussian RBF
         print("Gaussian RBF not implemented yet")
@@ -76,7 +75,7 @@ def runApp(csv_file):
     plt.legend(loc='upper left')
 
     # Graph the original points
-    graphOriginal = input("Do you want to graph the original points? (y/n): ")
+    graphOriginal = input("\nDo you want to graph the original points? (y/n): ")
     if graphOriginal == "y":
         ax1.scatter(x_values, y_values, fxy_values, color='blue', marker='x', label="Original Points")
         ax1.legend(loc='upper left')
