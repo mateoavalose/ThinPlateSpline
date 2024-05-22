@@ -22,7 +22,7 @@ def runApp(csv_file):
         degree = input("You chose Thin Plate Spline: choose a value for a (degree): ")
         b = input("Choose a value for b: ")
         input("Press Enter to calculate the weight matrix. ...")
-        tpsFunction:TPS = TPS(degree = 1, b = 1, x_values = x_values, y_values = y_values)
+        tpsFunction:TPS = TPS(degree = degree, b = b, x_values = x_values, y_values = y_values)
         # Calculate the centres and the weight matrix
         A = tpsFunction.matrix_A()
         w = func.invA_weight(A, fxy_values)
